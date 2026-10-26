@@ -4,11 +4,16 @@ const WebSocket = require("ws");
 const { WebcastPushConnection } = require("tiktok-live-connector");
 
 const PORT = process.env.PORT || 8787;
-const server = http.createServer((req, res) => {
-  if (req.url === "/health") {
+const const server = http.createServer((req, res) => {
+  const path = new URL(req.url, `http://${req.headers.host}`).pathname;
+
+  res.setHeader("Cache-Control", "no-store");
+
+  if (path === "/health" || path === "/health/") {
     res.writeHead(200, { "Content-Type": "application/json" });
     return res.end(JSON.stringify({ status: "ok" }));
   }
+
   res.writeHead(200, { "Content-Type": "text/plain" });
   res.end("Ben Yasser TikTok Chat Bridge");
 });
