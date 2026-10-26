@@ -4,7 +4,7 @@ const WebSocket = require("ws");
 const { WebcastPushConnection } = require("tiktok-live-connector");
 
 const PORT = process.env.PORT || 8787;
-const const server = http.createServer((req, res) => {
+const server = http.createServer((req, res) => {
   const path = new URL(req.url, `http://${req.headers.host}`).pathname;
 
   res.setHeader("Cache-Control", "no-store");
